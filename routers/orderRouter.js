@@ -60,8 +60,6 @@ router.post(
   })
 );
 
-
-
 router.get(
   "/",
   isAuth,
@@ -99,6 +97,7 @@ router.put(
     const order = await Order.findById(req.params.id);
     if (order) {
       order.isDelivered = true;
+      order.isPaid = true;
       order.deliveredAt = Date.now();
 
       const updatedOrder = await order.save();
